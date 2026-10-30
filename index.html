@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Nani</title>
+    <!-- Clean font for the Small Caps effect -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg-color: #ffffff;
+        --card-bg: #ffffff;
+        --primary: #ff4d4d; /* Light Red */
+        --text-main: #000000;
+        --text-muted: #555555;
+        --border-color: rgba(255, 77, 77, 0.2);
+        --glow: 0 0 15px rgba(255, 77, 77, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        font-variant: small-caps;
+        text-transform: lowercase;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          rgba(255, 77, 77, 0.05) 100%
+        );
+      }
+
+      .container {
+        max-width: 450px;
+        width: 100%;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 30px 20px;
+        box-shadow: 0 10px 40px rgba(255, 77, 77, 0.15);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--primary);
+        box-shadow: var(--glow);
+      }
+
+      .tag-top {
+        display: block;
+        background: rgba(255, 77, 77, 0.1);
+        color: var(--primary);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid rgba(255, 77, 77, 0.3);
+        margin: 0 auto 25px;
+        text-align: center;
+        width: fit-content;
+        letter-spacing: 1px;
+      }
+
+      .profile-section {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* Avatar Animation Section */
+      .avatar-container {
+        position: relative;
+        width: 105px;
+        height: 105px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .avatar-ring {
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        width: calc(100% + 8px);
+        height: calc(100% + 8px);
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: var(--primary);
+        border-bottom-color: var(--primary);
+        border-right-color: rgba(255, 77, 77, 0.2);
+        border-left-color: rgba(255, 77, 77, 0.2);
+        animation: spin 1.5s linear infinite;
+        box-shadow: var(--glow);
+        z-index: 1;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .avatar {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ffffff;
+        z-index: 2;
+      }
+
+      .verified-badge {
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        background: var(--primary);
+        color: #ffffff;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid #ffffff;
+        font-size: 12px;
+        box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+        z-index: 3;
+      }
+
+      .verified-edu {
+        background: rgba(255, 77, 77, 0.05);
+        color: var(--primary);
+        border: 1px solid rgba(255, 77, 77, 0.2);
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 15px;
+      }
+
+      /* Title Animation Section */
+      .title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--text-main);
+        letter-spacing: 2px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        overflow: hidden;
+        padding: 5px 0;
+      }
+
+      .slide-left {
+        display: inline-block;
+        opacity: 0;
+        animation: slideLeftAnim 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      }
+
+      .slide-right {
+        display: inline-block;
+        opacity: 0;
+        animation: slideRightAnim 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      }
+
+      @keyframes slideLeftAnim {
+        0% {
+          transform: translateX(-80px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideRightAnim {
+        0% {
+          transform: translateX(80px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .desc {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 25px;
+        font-weight: 600;
+      }
+
+      .btn-join {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        background: var(--primary);
+        color: #ffffff;
+        border: none;
+        padding: 15px;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+        text-decoration: none;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+      }
+
+      .btn-join:hover {
+        background: #ff3333;
+        box-shadow: 0 8px 25px rgba(255, 77, 77, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .status {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 30px;
+        border-bottom: 1px dashed var(--border-color);
+        padding-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .status span {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .feature-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        padding: 15px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(255, 77, 77, 0.05);
+      }
+
+      .feature-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 5px 15px rgba(255, 77, 77, 0.15);
+        transform: translateY(-3px);
+        background: rgba(255, 77, 77, 0.02);
+      }
+
+      .icon-wrapper {
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        background: rgba(255, 77, 77, 0.1);
+        border: 1px solid rgba(255, 77, 77, 0.2);
+      }
+
+      .feature-icon,
+      .feature-icon-white {
+        color: var(--primary);
+      }
+
+      .feature-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: var(--text-main);
+      }
+
+      .feature-desc {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+        font-weight: 600;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tag-top">
+        <i
+          class="fas fa-terminal"
+          style="font-size: 10px; margin-right: 5px"
+        ></i>
+        TRADING CHANNEL
+      </div>
+
+      <div class="profile-section">
+        <div class="avatar-container">
+          <!-- Added avatar-ring for spinning red loading effect -->
+          <div class="avatar-ring"></div>
+          <img src="Nani.jpeg" alt="Team Nani" class="avatar" />
+          <div class="verified-badge">
+            <i class="fas fa-check"></i>
+          </div>
+        </div>
+
+        <div class="verified-edu">
+          <i class="fas fa-shield-alt"></i> VERIFIED EDUCATIONAL CHANNEL
+        </div>
+
+        <!-- Added sliding animations to TEAM and NANI -->
+        <h1 class="title">
+          <span class="slide-left">TEAM</span>
+          <span class="slide-right">NANI</span>
+        </h1>
+
+        <p class="desc">
+          Learn. Analyze. Improve. Your Daily Market Study Starts Here — Join
+          Free.
+        </p>
+      </div>
+
+      <a href="https://t.me/+pv7v0KtpWZBlMTBl" class="btn-join">
+        <i class="fab fa-telegram-plane"></i> Join Now
+        <i class="fas fa-chevron-right" style="font-size: 0.8rem"></i>
+      </a>
+
+      <div class="status">
+        Status: <span>[ Ready ]</span> _ opens in Telegram
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-book feature-icon"></i>
+          </div>
+          <div class="feature-title">Structured Lessons</div>
+          <div class="feature-desc">Clean notes built for quick revision.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-bolt feature-icon"></i>
+          </div>
+          <div class="feature-title">Daily Updates</div>
+          <div class="feature-desc">Fresh quizzes & practice every day.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-crosshairs feature-icon"></i>
+          </div>
+          <div class="feature-title">Exam Focused</div>
+          <div class="feature-desc">Curated for board & competitive prep.</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-headset feature-icon"></i>
+          </div>
+          <div class="feature-title">Doubt Support</div>
+          <div class="feature-desc">Ask freely, get real answers fast.</div>
+        </div>
+      </div>
+
+      <div class="footer">POWERED BY TEAM NANI</div>
+    </div>
+  </body>
+</html>
